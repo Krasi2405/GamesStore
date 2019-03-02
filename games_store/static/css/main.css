@@ -1,0 +1,47 @@
+@font-face {
+        font-family: "NavbarFont";
+        src: url("../fonts/American Captain.ttf");
+}
+
+
+body {
+	background-color: #27216b;
+}
+
+#navbar {
+	background-color: #0e084f;
+	margin: -5px -20px 0 -20px;
+	padding-bottom: 60px;
+	padding-top: 20px;
+	color: #ddd;
+}
+
+#navbar * {
+	font-family: "NavbarFont";
+	color: #ddd;
+}
+
+#navbar a {
+	text-decoration: none;
+	font-size: 2em;
+	margin: 0 15px;
+}
+
+.content {
+	background-color: #3f36ab;
+	width: 80%;
+	height: auto;
+	margin: 0 auto;
+}
+
+.left-side {
+	float: left;
+	margin-left: 50px;
+	display: inline-block;
+}
+
+.right-side {
+	float: right;
+	margin-right: 50px;
+	display: inline-block;
+}
