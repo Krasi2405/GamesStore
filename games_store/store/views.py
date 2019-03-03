@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.conf import settings
 
-from .models import Game
+from .models import Game, GameImage
 
 
 def index(request):
@@ -11,4 +11,5 @@ def index(request):
 
 def detail(request, pk):
 	game = Game.objects.get(pk=pk)
-	return render(request, "store/detail.html", {"game": game})
+	images = game.gameimage_set.all()
+	return render(request, "store/detail.html", {"game": game, "images": images})

@@ -8,38 +8,43 @@
 	<link rel = "stylesheet" href = "{% static 'css/materialize.min.css' %}">
 	<link rel = "stylesheet" href = "{% static 'css/main.css' %}">
 
+	<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
 	<script src = "{% static 'js/materialize.min.js' %}"></script>
 	{% block head %}
 
 	{% endblock %}
 </head>
 
-<body>
-	<div id = "navbar" class = "section">
+<body class = "indigo darken-1">
+	<div id = "navbar" class = "section indigo darken-3">
 		<div class = "row">
-			<div class = "col s4 left-align">
+			<div class = "col s5 l4 left-align">
 				<a href = ""><img src = ""></a>
 				<a href = "{% url 'store:index' %}">Store</a>
 				<a href = "">Help</a>
 			</div>
-			<div class = "col s4 center-align circle">
+			<div class = "col s1 l4 center-align circle">
 				<img src = "{% static 'images/store_icon.png' %}">
 			</div>
-			<div class = "col s4 right-align">
+			<div class = "col s6 l4 right-align">
 				<a href = "">Library</a>
 				<a href = "">Profile</a>
 			</div>
 		</div>
 	</div>
 	
-	<div class = "content">
+	<div class = "content indigo">
 		{% block content %}
 
 		{% endblock %}
 	</div>
 
-	<footer class = "page-footer">
-		<div class = "footer-copyright">
+	<footer class = "page-footer indigo darken-2">
+		<div class = "footer-copyright indigo darken-3">
 			<p> © 2019 Krasimir Georgiev</p>
 		</div>
 	</footer>

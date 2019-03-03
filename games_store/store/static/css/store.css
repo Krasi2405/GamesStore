@@ -6,3 +6,8 @@
 	width: 100%;
 	background-color: #bbb	;
 }
+
+.carousel {
+	width: 50%;
+	margin: 0 auto;
+}

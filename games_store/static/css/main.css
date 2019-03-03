@@ -3,13 +3,11 @@
         src: url("../fonts/American Captain.ttf");
 }
 
-
-body {
-	background-color: #27216b;
+img {
+	image-rendering: pixelated;
 }
 
 #navbar {
-	background-color: #0e084f;
 	color: #ddd;
 }
 
@@ -25,7 +23,6 @@ body {
 }
 
 .content {
-	background-color: #3f36ab;
 	width: 85%;
 	height: auto;
 	margin: 0 auto;
