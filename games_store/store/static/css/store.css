@@ -1,3 +1,8 @@
-p {
+.game-title {
 	text-align: center;
+}
+
+.game-image {
+	width: 100%;
+	background-color: #bbb	;
 }

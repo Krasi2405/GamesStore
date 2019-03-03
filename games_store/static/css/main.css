@@ -10,9 +10,6 @@ body {
 
 #navbar {
 	background-color: #0e084f;
-	margin: -5px -20px 0 -20px;
-	padding-bottom: 60px;
-	padding-top: 20px;
 	color: #ddd;
 }
 
@@ -29,19 +26,15 @@ body {
 
 .content {
 	background-color: #3f36ab;
-	width: 80%;
+	width: 85%;
 	height: auto;
 	margin: 0 auto;
 }
 
 .left-side {
-	float: left;
-	margin-left: 50px;
-	display: inline-block;
+	text-align: left;
 }
 
 .right-side {
-	float: right;
-	margin-right: 50px;
-	display: inline-block;
+	text-align: right;
 }
