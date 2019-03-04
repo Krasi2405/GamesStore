@@ -11,3 +11,23 @@
 	width: 50%;
 	margin: 0 auto;
 }
+
+#description-box {
+	padding: 5px 0;	
+}
+
+#description-box p {
+	margin: 15px;
+}
+
+.margin-hor-40 {
+	margin: 0 40px;
+}
+
+.margin-hor-20 {
+	margin: 0 20px;
+}
+
+.parallax-container {
+	height: 200px;
+}
