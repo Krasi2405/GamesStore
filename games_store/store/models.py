@@ -20,3 +20,10 @@ class GameImage(models.Model):
 	def get_url(self):
 		return settings.MEDIA_URL + self.image.name
 
+
+class Review(models.Model):
+	game = models.ForeignKey('Game', on_delete = models.CASCADE)
+	user = models.CharField(max_length = 64) # TODO: Create user model
+	title = models.CharField(max_length = 128)
+	rating = models.IntegerField()
+	description = models.TextField()

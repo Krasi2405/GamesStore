@@ -12,4 +12,5 @@ def index(request):
 def detail(request, pk):
 	game = Game.objects.get(pk=pk)
 	images = game.gameimage_set.all()
-	return render(request, "store/detail.html", {"game": game, "images": images})
+	reviews = game.review_set.all()
+	return render(request, "store/detail.html", {"game": game, "images": images, "reviews": reviews})

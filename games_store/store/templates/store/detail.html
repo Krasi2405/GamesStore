@@ -20,7 +20,7 @@
 						<img src = "{{ image.get_url }}">
 					</div>
 				{% endfor %} -->
-			    <ul class="tabs">
+			    <ul class="tabs indigo darken-2 z-depth-1">
 		      		{% for image in images %}
 		      			<li class ="tab col s6 m3 l2">
 		      				<img src = "{{ image.get_url }}" class = "materialboxed game-image">
@@ -31,7 +31,7 @@
 		    </div>
 	    {% endif %}
 
-		<div class = "row margin-hor-20">
+		<div class = "row margin-hor-20 margin-vert-80">
 			<div id = "description-box" class = "indigo darken-2 z-depth-2 col s12 m6">
 				<p>Description:</p>
 				<p id = "description-text">{{ game.description }}</p>
@@ -40,12 +40,12 @@
 			<div class = "col s12 m5 indigo darken-3 z-depth-3">
 				<p id = "title">{{ game.name }}</p>
 				<p id = "review-num">Reviews: 10/10</p>
-				<p id = "release-date">{{ game.release_date }}</p>
+				<p id = "release-date">{{ game.release_date.date }}</p>
 				<p id = "developer-link">Developer: <a href = "#to_developer">Developer link here!</a></p>
 			</div>
 		</div>
 
-		<div id = "review-form" class = "row input-field">
+		<div id = "review-form" class = "row input-field indigo darken-2 margin-hor-20 margin-vert-80 padding-vert-20">
 			<div class = "col s12 m2 l2">
 				<img src = "{% static 'images/user_icon.png' %}" class = "game-image">
 				<p>Review count: 0</p>
@@ -69,8 +69,22 @@
         	</div>
 		</div>
 
-		<div class = "reviews">
+		<div id = "reviews-list" class = "margin-hor-20">
+			{% for review in reviews %}
+				<div class = "row padding-vert-20 padding-hor-20 indigo darken-2">
+					<div class = "col s4 m2">
+						<img src = "{% static 'images/user_icon.png' %}" class = "game-image">
+						<p>{{ review.user }}</p>
+						<p>Review count: 0</p>
+						<p>Owns the game???</p>
+					</div>
+					<div class = "col s8 m8">
+						<p>{{ review.rating }} - {{ review.title }}</p>
+						<p>{{ review.description }}</p>
+					</div>
+				</div>
 
+			{% endfor %}
 		</div>
 		
 	</div>

@@ -8,10 +8,14 @@ class GameImageInline(admin.TabularInline):
 	extra = 3
 
 
+class ReviewInline(admin.TabularInline):
+	model = models.Review
+	extra = 3
+
 
 class GameAdmin(admin.ModelAdmin):
 	list_display = ('name',)
-	inlines = [GameImageInline]
+	inlines = [GameImageInline, ReviewInline]
 
 
 admin.site.register(models.Game, GameAdmin)
