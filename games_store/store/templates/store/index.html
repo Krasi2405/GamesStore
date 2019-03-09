@@ -1,19 +1,44 @@
-{% extends 'layout.html' %}
+{% extends 'store/layout.html' %}
 {% load static %}
 
 {% block head %}
 	<link rel = "stylesheet", href = "{% static 'css/store.css' %}">
+	<script src = "{% static 'js/uniform_image_size.js' %}"></script>
+
 {% endblock %}
 
 {% block content %}
-	<div id = "games-list" class = "container row">
-	{% for game in games %}
-		<div id = "game" class = "col s12 m6 l4 section">
-			<a href = "{% url 'store:detail' pk=game.pk %}">
-				<p class = "game-title">{{ game.name }}</p>
-				<img src = "{{ game.get_thumbnail_url }}" class = "game-image">
-			</a>
+	<div class = "container">
+		<form action = "/store/search/", method = "GET" name = "search-game" id = "search-game">
+			<div class = "row padding-vert-20">
+				<div class = "col s12">
+					<input id = "search-text" type = "text" name = "search-text" placeholder="search games">
+					<input type = "submit">
+				</div>
+			</div>
+		</form>
+		
+		<div id = "games-list" class = "row">
+		{% for game in games %}
+			{% if not game.takes_two_columns %}
+				<div id = "game-store-box" class = "col s12 m6 l4">
+					<a href = "{% url 'store:detail' pk=game.pk %}">
+						<p class = "game-title">{{ game.name }}</p>
+						<img src = "{{ game.get_thumbnail_url }}" class = "game-image">
+					</a>
+				</div>
+			{% else %}
+				<div id = "game-store-box" class = "col s12 m12 l8">
+					<a href = "{% url 'store:detail' pk=game.pk %}">
+						<p class = "game-title">{{ game.name }}</p>
+						<img src = "{{ game.get_thumbnail_url }}" class = "game-image">
+					</a>
+				</div>
+			{% endif %}
+		{% endfor %}
 		</div>
-	{% endfor %}
 	</div>
+	<script>resize_images()</script>
+
+	
 {% endblock %}

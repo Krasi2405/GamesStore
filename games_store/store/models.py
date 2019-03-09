@@ -6,11 +6,16 @@ class Game(models.Model):
 	name = models.CharField(max_length = 128)
 	description = models.TextField()
 	thumbnail = models.ImageField(upload_to = 'game_thumbnails/')
+	takes_two_columns = models.BooleanField()
 	game_files = models.FileField(upload_to ='games/')
 	release_date = models.DateTimeField(auto_now_add = True)
+	tags = models.ManyToManyField('Tag')
 
 	def get_thumbnail_url(self):
 		return settings.MEDIA_URL + self.thumbnail.name
+
+	def __str__(self):
+		return self.name
 
 
 class GameImage(models.Model):
@@ -27,3 +32,10 @@ class Review(models.Model):
 	title = models.CharField(max_length = 128)
 	rating = models.IntegerField()
 	description = models.TextField()
+
+
+class Tag(models.Model):
+	name = models.CharField(max_length = 32)
+
+	def __str__(self):
+		return self.name

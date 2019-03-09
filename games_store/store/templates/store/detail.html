@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'store/layout.html' %}
 {% load static %}
 
 {% block head %}
@@ -9,25 +9,16 @@
 {% block content %}
 	<div class = "grey-text text-lighten-3">
 		<div class="parallax-container">
-	    	<div class="parallax"><img src="{{ game.get_thumbnail_url }}"></div>
+	    	<div class="parallax">
+	    		<img src="{{ game.get_thumbnail_url }}">
+	    	</div>
 	    </div>
-
+	    
 		{% if images %}
-			<div class = "row">
-			<!-- 
-				{% for image in images %}
-					<div id="{{ image.get_url }}" class="col s12">
-						<img src = "{{ image.get_url }}">
-					</div>
-				{% endfor %} -->
-			    <ul class="tabs indigo darken-2 z-depth-1">
-		      		{% for image in images %}
-		      			<li class ="tab col s6 m3 l2">
-		      				<img src = "{{ image.get_url }}" class = "materialboxed game-image">
-		      			</li>
-			        {% endfor %}
-			    </ul>
-			    
+			<div id = "images-tab" class = "indigo darken-2">
+	      		{% for image in images %}
+	      			<img src = "{{ image.get_url }}" class = "materialboxed">
+		        {% endfor %}
 		    </div>
 	    {% endif %}
 
@@ -42,6 +33,11 @@
 				<p id = "review-num">Reviews: 10/10</p>
 				<p id = "release-date">{{ game.release_date.date }}</p>
 				<p id = "developer-link">Developer: <a href = "#to_developer">Developer link here!</a></p>
+				<p>Tags:    
+				{% for tag in tags %}
+					<a href = "#" id = "game-tag"  class = "amber-text">{{ tag.name }} </a>		
+				{% endfor %}
+				</p>
 			</div>
 		</div>
 
@@ -86,11 +82,10 @@
 
 			{% endfor %}
 		</div>
-		
 	</div>
 
 
-	<!---<script src = "{% static 'js/tabs.js' %}"></script>-->
+	<!-- <script src = "{% static 'js/tabs.js' %}"></script> -->
 	<script src = "{% static 'js/paralax.js' %}"></script> 
 	<script src = "{% static 'js/materialbox.js' %}"></script>
 {% endblock %}

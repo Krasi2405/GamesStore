@@ -19,57 +19,53 @@
 	margin: 15px;
 }
 
-.margin-vert-20 {
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-
-.margin-vert-40 {
-	margin-top: 40px;
-	margin-bottom: 40px;
-}
-
-.margin-vert-80 {
-	margin-top: 80px;
-	margin-bottom: 80px;
-}
-
-.margin-hor-20 {
-	margin-left: 20px;
-	margin-right: 20px;
-}
-
-.margin-hor-40 {
-	margin-left: 40px;
-	margin-right: 40px;
-}
-
-.padding-vert-20 {
-	padding-top: 20px;
-	padding-bottom: 20px;
-}
-
-.padding-vert-40 {
-	padding-top: 40px;
-	padding-bottom: 40px;
-}
-
-.padding-vert-80 {
-	padding-top: 80px;
-	padding-bottom: 80px;
-}
-
-
-.padding-hor-20 {
-	padding-left: 20px;
-	padding-right: 20px;
-}
-
-.padding-hor-40 {
-	padding-left: 40px;
-	padding-right: 40px;
-}
-
 .parallax-container {
-	height: 200px;
+	height: 400px;
+}
+
+.parallax img {
+	width: 200px;
+}
+
+.tabs {
+	height: 20vh;
+}
+
+.tab img {
+	height: 100%;
+}
+
+#game-tag:hover {
+	background-color: #536dfe;
+}
+
+#game-store-box {
+	vertical-align: top;
+}
+
+
+#images-tab {
+	width: auto;
+	overflow-x: auto;
+	white-space: nowrap;
+	padding: 10px 0;
+}
+
+#images-tab * {
+	display: inline-block;
+}
+
+#images-tab img {
+	width: 150px;
+	margin: 0 5px;
+}
+
+
+#description-box {
+	margin-bottom: 50px;
+}
+
+#game-store-box {
+	padding-bottom: 20px;
+	margin-bottom: 20px;
 }

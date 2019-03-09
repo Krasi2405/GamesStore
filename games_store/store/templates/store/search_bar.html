@@ -1,0 +1,49 @@
+{% extends 'store/layout.html' %}
+{% load static %}
+
+
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+	<form action = "/store/search/", method = "GET" name = "search-game" id = "search-game">
+		<div class = "row padding-vert-20">
+			<div class = "col s12 m7 l8">
+				<input id = "search-text" type = "text" name = "search-text" placeholder="search games">
+				<input type = "submit" class = "align-right">
+
+				{% if games %}
+				<div id = "game-list-compact" class = "margin-vert-40">
+					{% for game in games %}
+						<div id = "game-box-compact">
+							<a href = "{% url 'store:detail' game.pk %}">
+								<div class = "row">
+									<img src = "{{ game.get_thumbnail_url }}" width = 200 class = "col s4 m4 l3">
+									<p class = "col s8 m8 l9">{{ game.name }}</p>
+								</div>
+							</a>
+						</div>
+					{% endfor %}
+				</div>
+				{% else %}
+					<p>No games found!</p>
+				{% endif %}
+			</div>
+			<div class = "col s1"></div>
+			<div class = "col s12 m4 l3">
+				{% for tag in tags %}
+					<p>
+						<label>
+					    	<input type="checkbox" name = "tags[]" value = "{{ tag.id }}"/>
+					    	<span>{{ tag }}</span>
+					    </label>
+					</p>	
+				{% endfor %}
+			</div>
+		</div>
+		<div class = "row">
+
+		</div>
+	</form>
+{% endblock %}
