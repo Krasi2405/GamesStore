@@ -1,0 +1,8 @@
+{% extends 'users/layout.html' %}
+
+{% block content %}
+	<div class = "hor-margin-40 center">
+		<p class = "success">You have succesfully logged out!</p>
+		<a href ="{% url 'users:login' %}">Log in again</a>
+	</div>
+{% endblock %}

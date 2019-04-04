@@ -1,3 +1,7 @@
+* {
+	color: #ddd;
+}
+
 @font-face {
         font-family: "NavbarFont";
         src: url("../fonts/American Captain.ttf");
@@ -93,3 +97,20 @@ img {
 	padding-right: 40px;
 }
 
+
+
+/*===============================
+	MESSAGE TYPE COLORS
+================================*/
+
+.error {
+	background-color: #ad1457;
+}
+
+.warning {
+	background-color: #ffcc80;
+}
+
+.success {
+	background-color: #448aff;
+}

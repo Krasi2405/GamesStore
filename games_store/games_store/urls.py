@@ -19,8 +19,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import re_path
 
-
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
-    re_path(r'^store/', include(('store.urls', 'store'), namespace = 'store'))
+    re_path(r'^store/', include(('store.urls', 'store'), namespace = 'store')),
+    re_path(r'^users/', include(('users.urls', 'users'), namespace = 'users')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

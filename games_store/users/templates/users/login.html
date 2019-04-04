@@ -1,0 +1,31 @@
+{% extends 'users/layout.html' %}
+
+{% block content %}
+	<div class = "margin-hor-40 row">
+		<div class = "col s12 m12 l7">
+			<form method = "POST">
+				{% csrf_token %}
+				{% for field in form %}
+					<div class = "field">
+						{% if field.errors %}
+							<p class = "field-error red-text">{{ field.errors }}</p>
+						{% endif %}
+						{{ field.label_tag }} 
+						{{ field }}
+						{% if field.help_text %}
+							<p class = "help">{{ field.help_text }}</p>
+						{% endif %}
+					</div>
+				{% endfor %}
+				<br>
+				<button>Sign up!</button>
+			</form>
+		</div>
+	
+		<br>
+		<div class = "col s12 m12 l4 right">
+			<p>Don't have an account?</p>
+			<button><a href = "{% url 'users:register' %}">Register</a></button>
+		</div>
+	</div>
+{% endblock %}
