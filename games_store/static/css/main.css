@@ -30,7 +30,31 @@ img {
 	width: 85%;
 	height: auto;
 	margin: 0 auto;
+	padding-bottom: 10px;
 }
+
+.items-tab {
+	width: auto;
+	overflow-x: auto;
+	white-space: nowrap;
+	padding: 10px 0;
+}
+
+.items-tab * {
+	display: inline-block;
+}
+
+.items-tab .item-tab {
+	height: 150px;
+	margin: 0 5px;
+}
+
+
+#user-icon {
+	border-radius: 100px;
+	padding: 2px;
+}
+
 
 /*==============================
 		MATERIALIZE FIXINGS
@@ -40,7 +64,26 @@ img {
 }
 
 
+.container {
+	width: 90%;
+	padding-top: 20px;
+}
 
+
+
+/*================================
+		DROPDOWN MENU
+==================================*/
+.dropdown-content {
+	font-size: 0.6em;
+	overflow-x: hidden;
+}
+
+
+.dropdown-content li a {
+	padding: 0px;
+	height: 100%;
+}
 
 /*===============================
 	HELPER MARGINS AND PADDINGS

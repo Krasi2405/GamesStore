@@ -15,9 +15,10 @@
 	    </div>
 	    
 		{% if images %}
-			<div id = "images-tab" class = "indigo darken-2">
+			<div class = "indigo darken-2 items-tab">
 	      		{% for image in images %}
-	      			<img src = "{{ image.get_url }}" class = "materialboxed">
+	      		
+	      			<img src = "{{ image.get_url }}" class = "materialboxed item-tab">
 		        {% endfor %}
 		    </div>
 	    {% endif %}

@@ -1,4 +1,10 @@
-{% extends 'users/layout.html' %}
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel = "stylesheet" href = "{% static 'css/users.css' %}">
+	<script src = "{% static 'js/field_on_focus_help.js' %}"></script>
+{% endblock %}
 
 {% block content %}
 	<div class = "margin-hor-40 row">
@@ -10,22 +16,22 @@
 						{% if field.errors %}
 							<p class = "field-error red-text">{{ field.errors|first }}</p>
 						{% endif %}
-						{{ field.label_tag }} 
-						{{ field }}
 						{% if field.help_text %}
-							<p class = "help">{{ field.help_text }}</p>
+							<div class = "help">{{ field.help_text }}</div>
 						{% endif %}
+						{{ field.label_tag }}
+						{{ field }}
 					</div>
 				{% endfor %}
 				<br>
-				<button>Sign up!</button>
+				<button class = "btn" type = "submit">Sign up!</button>
 			</form>
 		</div>
 	
 		<br>
 		<div class = "col s12 m12 l4 right">
 			<p>Already have an account?</p>
-			<button><a href = "{% url 'users:login' %}">Login</a></button>
+			<a href = "{% url 'users:login' %}" class = "btn-small">Login</a>
 		</div>
 	</div>
 {% endblock %}

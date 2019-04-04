@@ -8,24 +8,25 @@
 				{% for field in form %}
 					<div class = "field">
 						{% if field.errors %}
-							<p class = "field-error red-text">{{ field.errors }}</p>
+							<p class = "field-error red-text">{{ field.errors|first }}</p>
 						{% endif %}
-						{{ field.label_tag }} 
-						{{ field }}
 						{% if field.help_text %}
-							<p class = "help">{{ field.help_text }}</p>
+							<div class = "help">{{ field.help_text }}</div>
 						{% endif %}
+						{{ field.label_tag }}
+						{{ field }}
 					</div>
 				{% endfor %}
 				<br>
-				<button>Sign up!</button>
+				<button class = "btn" type = "submit">Log in</button>
 			</form>
 		</div>
 	
 		<br>
+		<br>
 		<div class = "col s12 m12 l4 right">
 			<p>Don't have an account?</p>
-			<button><a href = "{% url 'users:register' %}">Register</a></button>
+			<a href = "{% url 'users:register' %}" class = "btn-small">Register</a>
 		</div>
 	</div>
 {% endblock %}

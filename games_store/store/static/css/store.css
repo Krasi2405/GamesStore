@@ -44,23 +44,6 @@
 }
 
 
-#images-tab {
-	width: auto;
-	overflow-x: auto;
-	white-space: nowrap;
-	padding: 10px 0;
-}
-
-#images-tab * {
-	display: inline-block;
-}
-
-#images-tab img {
-	width: 150px;
-	margin: 0 5px;
-}
-
-
 #description-box {
 	margin-bottom: 50px;
 }

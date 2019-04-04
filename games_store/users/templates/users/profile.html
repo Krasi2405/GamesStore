@@ -1,0 +1,26 @@
+{% extends 'users/layout.html' %}
+{% load static %}
+
+{% block content %}
+	<div class = "container">
+		<div class = "main-info row">
+			<img src = "{% static 'images/user_icon.png' %}" class = "col s12 m4 l3 z-depth-2" id = "user-icon">
+
+			<div class = "col s12 m1 l2"></div>
+			<div class = "account_info col s12 m7 l7">
+				<p id = "username">{{ user.username }}</p>
+			</div>
+		</div>
+
+		<p>Recently played games</p>
+		<div class = "items-tab" class = "indigo darken-2">
+			<div class = "item-tab review"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p></div>
+	    </div>
+
+	    <p>Recent reviews</p>
+	    <div class = "images-tab" class = "indigo darken-2">
+	    	<img src = "{% static 'empty' %}" class = "materialboxed">
+	    </div>
+    </div>
+
+{% endblock %}

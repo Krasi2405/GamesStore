@@ -8,12 +8,13 @@
 {% endblock %}
 
 {% block content %}
+
 	<div class = "container">
 		<form action = "/store/search/", method = "GET" name = "search-game" id = "search-game">
 			<div class = "row padding-vert-20">
 				<div class = "col s12">
 					<input id = "search-text" type = "text" name = "search-text" placeholder="search games">
-					<input type = "submit">
+					<button type = "submit" class = "btn-small">Search</button>
 				</div>
 			</div>
 		</form>
