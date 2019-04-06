@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.conf import settings
+from django.contrib import messages
 
-from .models import Game, GameImage, Tag
+from .models import Game, GameImage, Tag, Review
 
+from .forms import ReviewForm
 
 def index(request):
 	games = Game.objects.all()
@@ -14,10 +16,25 @@ def detail(request, pk):
 	images = game.gameimage_set.all()
 	reviews = game.review_set.all()
 	tags = game.tags.all()
+
+	review_form = ReviewForm()
+	if request.method == "POST":
+		review_form = ReviewForm(request.POST)
+		if review_form.is_valid():
+			review = Review.objects.create(
+				game=game,
+				user=request.user,
+				title=review_form.cleaned_data["title"],
+				rating=review_form.cleaned_data["rating"],
+				description=review_form.cleaned_data["description"],
+			)
+			messages.success(request, "Review added!")
+			return redirect("/store/game/" + pk)
+
 	return render(
 		request, 
 		"store/detail.html", 
-		{"game": game, "images": images, "reviews": reviews, "tags": tags}
+		{"game": game, "images": images, "reviews": reviews, "tags": tags, "review_form": review_form}
 	)
 
 def search(request):

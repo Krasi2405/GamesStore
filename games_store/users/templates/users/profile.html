@@ -4,13 +4,20 @@
 {% block content %}
 	<div class = "container">
 		<div class = "main-info row">
-			<img src = "{% static 'images/user_icon.png' %}" class = "col s12 m4 l3 z-depth-2" id = "user-icon">
-
+			<img src = "{{ profile.image.url }}" class = "col s12 m4 l3 z-depth-2" id = "user-icon">
 			<div class = "col s12 m1 l2"></div>
 			<div class = "account_info col s12 m7 l7">
-				<p id = "username">{{ user.username }}</p>
+				<p id = "username" class = "">{{ profile.user.username }}</p>
 			</div>
 		</div>
+
+		{% if is_profile_owner %}
+			<form method = "POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ update_form.as_p }}
+				<button class = "btn" type = "submit">Update</button>
+			</form>
+		{% endif %}
 
 		<p>Recently played games</p>
 		<div class = "items-tab" class = "indigo darken-2">
@@ -18,6 +25,9 @@
 	    </div>
 
 	    <p>Recent reviews</p>
+
+
+
 	    <div class = "images-tab" class = "indigo darken-2">
 	    	<img src = "{% static 'empty' %}" class = "materialboxed">
 	    </div>

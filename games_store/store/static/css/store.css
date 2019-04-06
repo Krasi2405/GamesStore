@@ -52,3 +52,19 @@
 	padding-bottom: 20px;
 	margin-bottom: 20px;
 }
+
+.star_container {
+	display: inline;
+}
+
+
+
+.filled-star {
+	display: none;
+}
+
+
+#review-title {
+	margin: 0;
+	font-size: 2em;
+}

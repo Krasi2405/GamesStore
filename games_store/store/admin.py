@@ -20,3 +20,4 @@ class GameAdmin(admin.ModelAdmin):
 
 admin.site.register(models.Game, GameAdmin)
 admin.site.register(models.Tag)
+admin.site.register(models.Review)

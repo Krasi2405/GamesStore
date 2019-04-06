@@ -4,7 +4,9 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import messages
 
-from .forms import UserRegisterForm, UserLoginForm
+from .forms import UserRegisterForm, UserLoginForm, ProfileUpdateForm
+
+from store.models import Review
 
 def register(request):
 	form = UserRegisterForm()
@@ -63,5 +65,34 @@ def authenticate_user(request, username, password):
 
 def profile(request, pk):
 	user = User.objects.get(pk=pk)
-	return render(request, "users/profile.html", {"user": user})
+	profile = user.profile
+
+	is_profile_owner = (user.pk == request.user.pk)
+
+	reviews = Review.objects.filter(user=user)
+
+	update_form = None
+	if is_profile_owner:
+		print("Gotten request form")
+		update_form = ProfileUpdateForm(instance=request.user.profile)
+		if request.method == "POST":
+			update_form = ProfileUpdateForm(
+				request.POST, 
+				request.FILES, 
+				instance=request.user.profile
+			)
+			if update_form.is_valid():
+				update_form.save()
+				messages.success(request, "Succesfully updated account!")
+				return redirect("/users/profile/" + pk)
+			else:
+				messages.error(request, "Account update failed!")
+
+
+	return render(request, "users/profile.html", 
+			{"profile": profile, 
+			 "is_profile_owner": is_profile_owner,
+			 "update_form": update_form,
+			 "reviews": reviews}
+	)
 

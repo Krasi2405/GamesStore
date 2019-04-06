@@ -3,7 +3,7 @@
 
 {% block head %}
 	<link rel = "stylesheet", href = "{% static 'css/store.css' %}">
-
+	<script src = "{% static 'js/star_selector.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -17,7 +17,6 @@
 		{% if images %}
 			<div class = "indigo darken-2 items-tab">
 	      		{% for image in images %}
-	      		
 	      			<img src = "{{ image.get_url }}" class = "materialboxed item-tab">
 		        {% endfor %}
 		    </div>
@@ -42,41 +41,79 @@
 			</div>
 		</div>
 
-		<div id = "review-form" class = "row input-field indigo darken-2 margin-hor-20 margin-vert-80 padding-vert-20">
+
+		{% if user.is_authenticated %}
+		<form method = "POST" id = "review-form" class = "row input-field indigo darken-2 margin-hor-20 margin-vert-80 padding-vert-20">
+			{% csrf_token %}
 			<div class = "col s12 m2 l2">
-				<img src = "{% static 'images/user_icon.png' %}" class = "game-image">
-				<p>Review count: 0</p>
+				<img src = "{{ user.profile.image.url }}" class = "game-image">
+				<p>Reviews: {{ user.review_set.count }}</p>
 				<p>Owns the game???</p>
 			</div>
 			<div class = "col s10 m8 l8">
 				<label>Leave a review</label>
 				<div class = "row">
-					<div class = "col s2">
-						<p>*****</p>
+					<div class = "col s5 m5 l3">
+						<div class = "star_container">
+							<img src = "{% static 'images/star_unfilled.png' %}" class = "unfilled-star">
+							<img src = "{% static 'images/star_filled.png' %}" class = "filled-star">
+						</div>
+						<div class = "star_container">
+							<img src = "{% static 'images/star_unfilled.png' %}" class = "unfilled-star">
+							<img src = "{% static 'images/star_filled.png' %}" class = "filled-star">
+						</div>
+						<div class = "star_container">
+							<img src = "{% static 'images/star_unfilled.png' %}" class = "unfilled-star">
+							<img src = "{% static 'images/star_filled.png' %}" class = "filled-star">
+						</div>
+						<div class = "star_container">
+							<img src = "{% static 'images/star_unfilled.png' %}" class = "unfilled-star">
+							<img src = "{% static 'images/star_filled.png' %}" class = "filled-star">
+						</div>
+						<div class = "star_container">
+							<img src = "{% static 'images/star_unfilled.png' %}" class = "unfilled-star">
+							<img src = "{% static 'images/star_filled.png' %}" class = "filled-star">
+						</div>
+						
+						{{ review_form.rating.errors }}
+						{{ review_form.rating }}
 					</div>
-					<div class = "col s10">
-						<input placeholder = "Review title" id="input_text" type="text">
+					<div class = "col s7 m7 l9">
+						{{ review_form.title.errors }}
+						{{ review_form.title }}
 					</div>
 				</div>
-				<textarea placeholder="10/10" id="review-textarea" class="materialize-textarea"></textarea>
+				{{ review_form.description.errors }}
+				{{ review_form.description }}
 				<div class = "right-align">
 					<button id = "submit-btn" class = "btn" type = "submit" name = "action">Submit</button>
-					<button id = "cancel-btn" class = "btn">Cancel</button>
 				</div>
         	</div>
-		</div>
+		</form>
+		{% endif %}
+
+		
 
 		<div id = "reviews-list" class = "margin-hor-20">
 			{% for review in reviews %}
 				<div class = "row padding-vert-20 padding-hor-20 indigo darken-2">
 					<div class = "col s4 m2">
-						<img src = "{% static 'images/user_icon.png' %}" class = "game-image">
+						<img src = "{{ review.user.profile.image.url }}" class = "game-image">
 						<p>{{ review.user }}</p>
-						<p>Review count: 0</p>
+						<p>Review count: {{ review.user.review_set.count }}</p>
 						<p>Owns the game???</p>
 					</div>
 					<div class = "col s8 m8">
-						<p>{{ review.rating }} - {{ review.title }}</p>
+						<div class = "row valign-wrapper">
+							<div class = "col s6">
+								{% for _ in ''|center:review.rating %}
+									<img src = "{% static 'images/star_filled.png' %}">
+								{% endfor %}
+							</div>
+							<div class = "col s6">
+								<p id = "review-title" class = "valign-wrapper">{{ review.title }}</p>
+							</div>
+						</div>
 						<p>{{ review.description }}</p>
 					</div>
 				</div>
