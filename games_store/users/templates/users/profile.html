@@ -1,6 +1,11 @@
 {% extends 'users/layout.html' %}
 {% load static %}
 
+{% block head %}
+	{{ block.super }}
+	<script src = "{% static 'js/show_button.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 	<div class = "container">
 		<div class = "main-info row">
@@ -10,27 +15,37 @@
 				<p id = "username" class = "">{{ profile.user.username }}</p>
 			</div>
 		</div>
-
+		<br>
 		{% if is_profile_owner %}
-			<form method = "POST" enctype="multipart/form-data">
-				{% csrf_token %}
-				{{ update_form.as_p }}
-				<button class = "btn" type = "submit">Update</button>
-			</form>
+			<button class = "btn-small" id = "show-button">Change settings</button>
+			<div class = "hidden-content">
+				<form method = "POST" enctype="multipart/form-data">
+					{% csrf_token %}
+					{{ update_form.as_p }}
+					<button class = "btn" type = "submit">Update</button>
+				</form>
+				<br>
+				<button class = "btn-small" id = "hide-button">Close</button>
+			</div>
 		{% endif %}
-
-		<p>Recently played games</p>
-		<div class = "items-tab" class = "indigo darken-2">
-			<div class = "item-tab review"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p></div>
-	    </div>
-
-	    <p>Recent reviews</p>
-
-
-
-	    <div class = "images-tab" class = "indigo darken-2">
-	    	<img src = "{% static 'empty' %}" class = "materialboxed">
-	    </div>
+		<br>
+		<p>Recent reviews</p>
+	</div>
+	<div class = "items-tab">
+		{% for review in reviews %}
+			<div class = "item-tab review indigo darken-1 z-depth-1">
+				<div class = "valign-wrapper">
+					<p id = "review-stars">
+					{% for _ in ''|center:review.rating %}
+						<img src = "{% static 'images/star_filled.png' %}">
+					{% endfor %}
+					</p>
+					<p id = "review-title" class = "truncate">{{ review.title }}</p>
+				</div>
+				<p id = "review-desc" class = "truncate">{{ review.description }}</p>
+			</div>
+		{% endfor %}
     </div>
+    
 
 {% endblock %}

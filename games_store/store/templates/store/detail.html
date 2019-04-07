@@ -17,7 +17,9 @@
 		{% if images %}
 			<div class = "indigo darken-2 items-tab">
 	      		{% for image in images %}
-	      			<img src = "{{ image.get_url }}" class = "materialboxed item-tab">
+	      			<div class = "item-tab">
+		      			<img src = "{{ image.get_url }}" class = "materialboxed item-tab">
+		      		</div>
 		        {% endfor %}
 		    </div>
 	    {% endif %}
@@ -103,14 +105,14 @@
 						<p>Review count: {{ review.user.review_set.count }}</p>
 						<p>Owns the game???</p>
 					</div>
-					<div class = "col s8 m8">
+					<div class = "col s8 m9">
 						<div class = "row valign-wrapper">
-							<div class = "col s6">
+							<div class = "col s6 m4 l3">
 								{% for _ in ''|center:review.rating %}
 									<img src = "{% static 'images/star_filled.png' %}">
 								{% endfor %}
 							</div>
-							<div class = "col s6">
+							<div class = "col s6 m8 l9">
 								<p id = "review-title" class = "valign-wrapper">{{ review.title }}</p>
 							</div>
 						</div>

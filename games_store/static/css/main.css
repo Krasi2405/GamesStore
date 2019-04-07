@@ -38,15 +38,14 @@ img {
 	overflow-x: auto;
 	white-space: nowrap;
 	padding: 10px 0;
+	background-color: #303f9f;
 }
 
-.items-tab * {
-	display: inline-block;
-}
 
 .items-tab .item-tab {
 	height: 150px;
 	margin: 0 5px;
+	display: inline-block;
 }
 
 
@@ -69,8 +68,18 @@ img {
 	padding-top: 20px;
 }
 
+.btn, .btn-small {
+	background-color: #7c4dff ;
+}
+
+.btn:hover, .btn-small:hover {
+	background-color: #b388ff;
+}
 
 
+.btn:focus, .btn-small:focus {
+	background-color: #6200ea;
+}
 /*================================
 		DROPDOWN MENU
 ==================================*/
