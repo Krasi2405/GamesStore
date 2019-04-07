@@ -42,6 +42,7 @@
 					</p>
 					<p id = "review-title" class = "truncate">{{ review.title }}</p>
 				</div>
+				<a href = "{% url 'store:detail' review.game.pk %}" class = "truncate">Reviewed {{ review.game.name }}</a>
 				<p id = "review-desc" class = "truncate">{{ review.description }}</p>
 			</div>
 		{% endfor %}
