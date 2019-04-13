@@ -6,7 +6,7 @@ from django.contrib import messages
 
 from .forms import UserRegisterForm, UserLoginForm, ProfileUpdateForm
 
-from store.models import Review
+from store.models import Review, Game
 
 def register(request):
 	form = UserRegisterForm()
@@ -70,7 +70,7 @@ def profile(request, pk):
 	is_profile_owner = (user.pk == request.user.pk)
 
 	reviews = Review.objects.filter(user=user)
-
+	games = Game.objects.filter(owners=user)
 	update_form = None
 	if is_profile_owner:
 		print("Gotten request form")
@@ -93,6 +93,7 @@ def profile(request, pk):
 			{"profile": profile, 
 			 "is_profile_owner": is_profile_owner,
 			 "update_form": update_form,
-			 "reviews": reviews}
+			 "reviews": reviews,
+			 "games": games}
 	)
 

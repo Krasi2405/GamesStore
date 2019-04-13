@@ -42,3 +42,34 @@
 	white-space: normal;
 	height: 70px;
 }
+
+
+.game-tabs {
+	height: 350px;
+	width: auto;
+	overflow-x: auto;
+	overflow-y: visible;
+	white-space: nowrap;
+	padding: 10px 0;
+	background-color: #303f9f;
+}
+
+
+.game-tabs .game-tab {
+	height: 150px;
+	max-width: 300px;
+	margin: 0px 5px 10px 5px;
+	padding: 5px 10px;
+	display: inline-block;
+}
+
+.game-tabs #game-title {
+	height: 20%;
+	margin: 0;
+}
+
+.game-tabs #game-thumbnail {
+	max-width: 250px;
+	height: 80%;
+	display: block;
+}

@@ -40,61 +40,92 @@
 					<a href = "#" id = "game-tag"  class = "amber-text">{{ tag.name }} </a>		
 				{% endfor %}
 				</p>
+				<br>
+				{% if user.is_authenticated %}
+					{% if is_owner %}
+						<p id = "owned">Already owned</p>
+					{% else %}
+						<button class = "btn"><a href = "{% url 'store:buy' game_pk=game.pk %}">Buy Game!</a></button>
+					{% endif %}
+				{% endif %}
 			</div>
 		</div>
 
-
 		{% if user.is_authenticated %}
-		<form method = "POST" id = "review-form" class = "row input-field indigo darken-2 margin-hor-20 margin-vert-80 padding-vert-20">
-			{% csrf_token %}
-			<div class = "col s12 m2 l2">
-				<img src = "{{ user.profile.image.url }}" class = "game-image">
-				<p>Reviews: {{ user.review_set.count }}</p>
-				<p>Owns the game???</p>
-			</div>
-			<div class = "col s10 m8 l8">
-				<label>Leave a review</label>
-				<div class = "row">
-					<div class = "col s5 m5 l3">
-						<div class = "star_container">
-							<img src = "{% static 'images/star_unfilled.png' %}" class = "unfilled-star">
-							<img src = "{% static 'images/star_filled.png' %}" class = "filled-star">
-						</div>
-						<div class = "star_container">
-							<img src = "{% static 'images/star_unfilled.png' %}" class = "unfilled-star">
-							<img src = "{% static 'images/star_filled.png' %}" class = "filled-star">
-						</div>
-						<div class = "star_container">
-							<img src = "{% static 'images/star_unfilled.png' %}" class = "unfilled-star">
-							<img src = "{% static 'images/star_filled.png' %}" class = "filled-star">
-						</div>
-						<div class = "star_container">
-							<img src = "{% static 'images/star_unfilled.png' %}" class = "unfilled-star">
-							<img src = "{% static 'images/star_filled.png' %}" class = "filled-star">
-						</div>
-						<div class = "star_container">
-							<img src = "{% static 'images/star_unfilled.png' %}" class = "unfilled-star">
-							<img src = "{% static 'images/star_filled.png' %}" class = "filled-star">
-						</div>
-						
-						{{ review_form.rating.errors }}
-						{{ review_form.rating }}
+			{% if has_reviewed %}
+				
+				<div class = "row padding-vert-20 padding-hor-20 indigo darken-2">
+					<p class = "center">Your review of the game</p>
+					<div class = "col s4 m2">
+						<img src = "{{ user.profile.image.url }}" class = "game-image">
+						<p>{{ user.username }}</p>
 					</div>
-					<div class = "col s7 m7 l9">
-						{{ review_form.title.errors }}
-						{{ review_form.title }}
+					<div class = "col s8 m9">
+						<div class = "row valign-wrapper">
+							<div class = "col s6 m4 l3">
+								{% for _ in ''|center:user_review.rating %}
+									<img src = "{% static 'images/star_filled.png' %}">
+								{% endfor %}
+							</div>
+							<div class = "col s6 m8 l9">
+								<p id = "review-title" class = "valign-wrapper">{{ user_review.title }}</p>
+							</div>
+						</div>
+						<p>{{ user_review.description }}</p>
 					</div>
 				</div>
-				{{ review_form.description.errors }}
-				{{ review_form.description }}
-				<div class = "right-align">
-					<button id = "submit-btn" class = "btn" type = "submit" name = "action">Submit</button>
+			{% else %}
+			<form method = "POST" id = "review-form" class = "row input-field indigo darken-2 margin-hor-20 margin-vert-80 padding-vert-20">
+				{% csrf_token %}
+				<div class = "col s12 m2 l2">
+					<img src = "{{ user.profile.image.url }}" class = "game-image">
+					<p>Reviews: {{ user.review_set.count }}</p>
 				</div>
-        	</div>
-		</form>
+				<div class = "col s10 m8 l8">
+					<label>Leave a review</label>
+					<div class = "row">
+						<div class = "col s5 m5 l3">
+							<div class = "star_container">
+								<img src = "{% static 'images/star_unfilled.png' %}" class = "unfilled-star">
+								<img src = "{% static 'images/star_filled.png' %}" class = "filled-star">
+							</div>
+							<div class = "star_container">
+								<img src = "{% static 'images/star_unfilled.png' %}" class = "unfilled-star">
+								<img src = "{% static 'images/star_filled.png' %}" class = "filled-star">
+							</div>
+							<div class = "star_container">
+								<img src = "{% static 'images/star_unfilled.png' %}" class = "unfilled-star">
+								<img src = "{% static 'images/star_filled.png' %}" class = "filled-star">
+							</div>
+							<div class = "star_container">
+								<img src = "{% static 'images/star_unfilled.png' %}" class = "unfilled-star">
+								<img src = "{% static 'images/star_filled.png' %}" class = "filled-star">
+							</div>
+							<div class = "star_container">
+								<img src = "{% static 'images/star_unfilled.png' %}" class = "unfilled-star">
+								<img src = "{% static 'images/star_filled.png' %}" class = "filled-star">
+							</div>
+							
+							{{ review_form.rating.errors }}
+							{{ review_form.rating }}
+						</div>
+						<div class = "col s7 m7 l9">
+							{{ review_form.title.errors }}
+							{{ review_form.title }}
+						</div>
+					</div>
+					{{ review_form.description.errors }}
+					{{ review_form.description }}
+					<div class = "right-align">
+						<button id = "submit-btn" class = "btn" type = "submit" name = "action">Submit</button>
+					</div>
+	        	</div>
+			</form>
+			{% endif %}
 		{% endif %}
 
-		
+		<br>
+		<br>
 
 		<div id = "reviews-list" class = "margin-hor-20">
 			{% for review in reviews %}
@@ -103,7 +134,11 @@
 						<img src = "{{ review.user.profile.image.url }}" class = "game-image">
 						<p>{{ review.user }}</p>
 						<p>Review count: {{ review.user.review_set.count }}</p>
-						<p>Owns the game???</p>
+						{% if game in review.user.game_set %}
+							<p>Owns game</p>
+						{% else %}
+							<p>Purchase not verified</p>
+						{% endif %}
 					</div>
 					<div class = "col s8 m9">
 						<div class = "row valign-wrapper">

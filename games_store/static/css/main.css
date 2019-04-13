@@ -30,7 +30,6 @@ img {
 	width: 85%;
 	height: auto;
 	margin: 0 auto;
-	padding-bottom: 10px;
 }
 
 .items-tab {
@@ -44,8 +43,13 @@ img {
 
 .items-tab .item-tab {
 	height: 150px;
+	max-width: 250px;
 	margin: 0 5px;
 	display: inline-block;
+}
+
+.game-image {
+	width: 100%;
 }
 
 

@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel = "stylesheet" href = "{% static 'css/library.css' %}">
+	<script src = "{% static 'js/game_tabs.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+	<div class = "row">
+		<div class = "col s5 m4 l3" id = "tab-selectors"s>
+			{% for game in games %}
+				<a href = "#select-{{ game.pk }}">
+					<div class = "tab-selector library-select-tab" id = "select-{{ game.pk }}">
+						<p class = "center flow-text">{{ game.name }}</p>
+					</div>
+				</a>
+			{% endfor %}
+		</div>
+		<div class = "col s7 m8 l9 tab-items">
+			{% for game in games %}
+				<div id = "select-{{ game.pk }}" class = "tab-item library-item">
+					<img src = "{{ game.get_thumbnail_url }}" align = "middle">
+					<p class = "center flow-text">{{ game.name }}</p>
+					<a href = "{% url 'library:download' pk=game.pk %}" class = "btn">Download</a>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

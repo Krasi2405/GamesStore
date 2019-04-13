@@ -33,7 +33,7 @@
 
 			<div class = "col s5 right-align">
 				{% if user.is_authenticated %}
-					<a href = "">Library</a>
+					<a href = "{% url 'library:index' %}">Library</a>
 					<a class = "dropdown-trigger" href = "#" data-target="profile-dropdown">Profile</a>
 
 					<ul id = "profile-dropdown" class = "dropdown-content indigo darken-3">
@@ -58,9 +58,9 @@
 			{% endfor %}
 		{% endif %}
 
-			{% block content %}
-
-			{% endblock %}
+		{% block content %}
+		
+		{% endblock %}
 	</div>
 
 	<footer class = "page-footer indigo darken-2">

@@ -1,0 +1,35 @@
+.tab-item {
+	display: none;
+}
+
+#tab-selectors {
+	padding: 0px;
+	margin: 0px;
+	min-height: 90vh;
+	height: auto;
+	background: #283593;
+	display: block;
+}
+
+.library-select-tab {
+	background-color: #3949ab;
+	border: 2px solid #283593;
+	margin: 5px 0px;
+}
+
+
+.library-select-tab p {
+	margin: 0;
+	padding: 10px 0;
+}
+
+.library-item p {
+	margin-top: 0;
+}
+
+.library-item img {
+	width: 100%;
+	max-width: 50vh;
+	margin: 0 auto;
+	display: block;
+}

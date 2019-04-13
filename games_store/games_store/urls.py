@@ -23,4 +23,5 @@ urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
     re_path(r'^store/', include(('store.urls', 'store'), namespace = 'store')),
     re_path(r'^users/', include(('users.urls', 'users'), namespace = 'users')),
+    re_path(r'^library/', include(('library.urls', 'library'), namespace = 'library'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

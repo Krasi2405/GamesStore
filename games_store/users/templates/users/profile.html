@@ -29,8 +29,25 @@
 			</div>
 		{% endif %}
 		<br>
-		<p>Recent reviews</p>
 	</div>
+
+	<br>
+
+	<p>Recently played games</p>
+	<div class = "game-tabs">
+		{% for game in games %}
+			<a href = "{% url 'store:detail' pk=game.pk %}">
+				<div class = "game-tab game indigo darken-1 z-depth-1">
+					<img src = "{{ game.get_thumbnail_url }}" id = "game-thumbnail">
+					<p id = "game-title" class = "center flow-text">{{ game.name }}</p>
+				</div>
+			</a>
+		{% endfor %}
+	</div>
+
+	<br>
+
+	<p class = "center">Recent reviews</p>
 	<div class = "items-tab">
 		{% for review in reviews %}
 			<div class = "item-tab review indigo darken-1 z-depth-1">

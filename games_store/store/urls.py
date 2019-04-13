@@ -11,5 +11,6 @@ from . import views
 urlpatterns = [
 	re_path(r'^$', views.index, name = "index"),
 	re_path(r'^game/(?P<pk>\d+)/$', views.detail, name = "detail"),
-	re_path(r'^search/$', views.search, name = "search")
+	re_path(r'^search/$', views.search, name = "search"),
+	re_path(r'^buy/(?P<game_pk>\d+)/$', views.buy, name = "buy")
 ]
