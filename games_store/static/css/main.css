@@ -2,6 +2,30 @@
 	color: #ddd;
 }
 
+/* Stick footer to bottom. wtf pravi tui??? */
+html {
+	height: 100%;
+}
+
+body {
+	position: relative;
+	min-height: 100%;
+}
+
+body::after {
+  content: '';
+  display: block;
+  height: 100px; /* Set same as footer's height */
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+}
+
+
 @font-face {
         font-family: "NavbarFont";
         src: url("../fonts/American Captain.ttf");
@@ -11,6 +35,9 @@ img {
 	image-rendering: pixelated;
 }
 
+/*----------------------------
+            NAVBAR 
+------------------------------*/
 #navbar {
 	color: #ddd;
 }
@@ -25,6 +52,10 @@ img {
 	font-size: 2em;
 	margin: 0 7.5px;
 }
+
+
+
+
 
 .content {
 	width: 85%;
@@ -59,9 +90,17 @@ img {
 }
 
 
+
+
 /*==============================
 		MATERIALIZE FIXINGS
 ================================*/
+footer .footer-copyright p {
+	display: block;
+	margin: 0 auto;
+}
+
+
 .parallax-container {
 	z-index: 0;
 }
@@ -156,8 +195,17 @@ img {
 
 
 /*===============================
-	MESSAGE TYPE COLORS
+	DJANGO     MESSAGES
 ================================*/
+
+.message {
+	font-size: 1.25em;
+	border-radius: 5px;
+	text-align: center;
+	display: inline-block;
+	width: 100%;
+	margin: 0 auto;
+}
 
 .error {
 	background-color: #ad1457;
@@ -168,5 +216,5 @@ img {
 }
 
 .success {
-	background-color: #448aff;
+	background-color: #2979ff;
 }

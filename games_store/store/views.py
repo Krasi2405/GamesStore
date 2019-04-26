@@ -17,39 +17,43 @@ def detail(request, pk):
 	images = game.gameimage_set.all()
 	reviews = game.review_set.all()
 	tags = game.tags.all()
+	platforms = game.platforms.all()
 
 	is_owner = False
-	if request.user and game.owners.filter(id=request.user.pk):
-		is_owner = True
-
 	has_reviewed = False
-	if request.user and reviews.filter(game=pk):
-		has_reviewed = True
-
 	user_review = None
-	if request.user and has_reviewed:
-		user_review = reviews.get(user=request.user)
+	review_form = None
 
-	review_form = ReviewForm()
-	if request.method == "POST":
-		review_form = ReviewForm(request.POST)
-		if review_form.is_valid():
-			review = Review.objects.create(
-				game=game,
-				user=request.user,
-				title=review_form.cleaned_data["title"],
-				rating=review_form.cleaned_data["rating"],
-				description=review_form.cleaned_data["description"],
-			)
-			messages.success(request, "Review added!")
-			return redirect("/store/game/" + pk)
+	if request.user.is_authenticated:
+		if game.owners.filter(id=request.user.pk):
+			is_owner = True
 
+		if reviews.filter(game=pk):
+			has_reviewed = True
+
+		if has_reviewed:
+			user_review = reviews.get(user=request.user)
+		
+		review_form = ReviewForm()		
+		if request.method == "POST":
+			review_form = ReviewForm(request.POST)
+			if review_form.is_valid():
+				review = Review.objects.create(
+					game=game,
+					user=request.user,
+					title=review_form.cleaned_data["title"],
+					rating=review_form.cleaned_data["rating"],
+					description=review_form.cleaned_data["description"],
+				)
+				messages.success(request, "Review added!")
+				return redirect("/store/game/" + pk)
 
 	return render(
 		request, 
 		"store/detail.html", 
-		{"game": game, "images": images, "reviews": reviews, "tags": tags, "is_owner": is_owner,
-		 "has_reviewed": has_reviewed, "review_form": review_form, "user_review": user_review}
+		{"game": game, "images": images, "reviews": reviews, "tags": tags, "platforms": platforms,
+		 "is_owner": is_owner, "has_reviewed": has_reviewed, "review_form": review_form, 
+		 "user_review": user_review}
 	)
 
 

@@ -2,17 +2,24 @@
 {% load static %}
 
 {% block head %}
+	<script src="https://cdn.jsdelivr.net/remarkable/1.7.1/remarkable.min.js"></script>
+	<script src = "{% static 'js/markdown_render.js' %}"></script>
+
 	<link rel = "stylesheet", href = "{% static 'css/store.css' %}">
 	<script src = "{% static 'js/star_selector.js' %}"></script>
+
+	
+	
 {% endblock %}
 
 {% block content %}
 	<div class = "grey-text text-lighten-3">
-		<div class="parallax-container">
+		<div class="parallax-container hide-on-med-and-down">
 	    	<div class="parallax">
 	    		<img src="{{ game.get_thumbnail_url }}">
 	    	</div>
 	    </div>
+	    <img src = "{{ game.get_thumbnail_url }}" class = "game-image hide-on-large-only">
 	    
 		{% if images %}
 			<div class = "indigo darken-2 items-tab">
@@ -35,11 +42,21 @@
 				<p id = "review-num">Reviews: 10/10</p>
 				<p id = "release-date">{{ game.release_date.date }}</p>
 				<p id = "developer-link">Developer: <a href = "#to_developer">Developer link here!</a></p>
-				<p>Tags:    
-				{% for tag in tags %}
-					<a href = "#" id = "game-tag"  class = "amber-text">{{ tag.name }} </a>		
-				{% endfor %}
-				</p>
+				{% if tags %}
+					<p>Tags:    
+						{% for tag in tags %}
+							<span id = "game-tag" class = "amber-text">{{ tag.name }}</span>		
+						{% endfor %}
+					</p>
+				{% endif %}
+
+				{% if platforms %}
+					<p>Platforms:
+						{% for platform in platforms %}
+							<span id = "platform"> {{ platform.name }}</span>
+						{% endfor %}
+					</p>
+				{% endif %}
 				<br>
 				{% if user.is_authenticated %}
 					{% if is_owner %}

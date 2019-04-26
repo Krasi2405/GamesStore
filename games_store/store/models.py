@@ -12,6 +12,7 @@ class Game(models.Model):
 	game_files = models.FileField(upload_to ='games/')
 	release_date = models.DateTimeField(auto_now_add = True)
 	tags = models.ManyToManyField('Tag')
+	platforms = models.ManyToManyField('Platform')
 	owners = models.ManyToManyField(User)
 
 	def get_thumbnail_url(self):
@@ -41,6 +42,13 @@ class Review(models.Model):
 
 
 class Tag(models.Model):
+	name = models.CharField(max_length = 32)
+
+	def __str__(self):
+		return self.name
+
+
+class Platform(models.Model):
 	name = models.CharField(max_length = 32)
 
 	def __str__(self):

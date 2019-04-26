@@ -19,7 +19,7 @@
 		</div>
 		<div class = "col s7 m8 l9 tab-items">
 			{% for game in games %}
-				<div id = "select-{{ game.pk }}" class = "tab-item library-item">
+				<div id = "select-{{ game.pk }}" class = "tab-item library-item padding-vert-40">
 					<img src = "{{ game.get_thumbnail_url }}" align = "middle">
 					<p class = "center flow-text">{{ game.name }}</p>
 					<a href = "{% url 'library:download' pk=game.pk %}" class = "btn">Download</a>
