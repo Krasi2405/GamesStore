@@ -33,22 +33,39 @@
 
 	<br>
 
-	<p>Recently played games</p>
+	
+	<p class = "center">Recently played games</p>
 	<div class = "game-tabs">
 		{% for game in games %}
-			<a href = "{% url 'store:detail' pk=game.pk %}">
-				<div class = "game-tab game indigo darken-1 z-depth-1">
-					<img src = "{{ game.get_thumbnail_url }}" id = "game-thumbnail">
-					<p id = "game-title" class = "center flow-text">{{ game.name }}</p>
-				</div>
-			</a>
+			{% if not forloop.counter|divisibleby:2 %}
+			<div class = "game-tab-container">
+				<a href = "{% url 'store:detail' pk=game.pk %}">
+					<div class = "game-tab indigo darken-1 z-depth-1">
+						<img src = "{{ game.get_thumbnail_url }}" id = "game-thumbnail" class = "game-image">
+						<p id = "game-title" class = "center flow-text">{{ game.name }}</p>
+					</div>
+				</a>
+			{% else %}
+				<a href = "{% url 'store:detail' pk=game.pk %}" class = "">
+					<div class = "game-tab indigo darken-1 z-depth-1">
+						<img src = "{{ game.get_thumbnail_url }}" id = "game-thumbnail">
+						<p id = "game-title" class = "center flow-text">{{ game.name }}</p>
+					</div>
+				</a>
+			</div>
+			{% endif %}
 		{% endfor %}
+		{% if not games|length|divisibleby:2 %}
+			</div>
+		{% endif %}
+
 	</div>
 
 	<br>
 
-	<p class = "center">Recent reviews</p>
+	
 	<div class = "items-tab">
+		<p class = "center">Recent reviews</p>
 		{% for review in reviews %}
 			<div class = "item-tab review indigo darken-1 z-depth-1">
 				<div class = "valign-wrapper">

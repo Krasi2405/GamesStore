@@ -45,22 +45,29 @@
 
 
 .game-tabs {
-	height: 350px;
+	height: 400px;
 	width: auto;
 	overflow-x: auto;
-	overflow-y: visible;
+	overflow-y: hidden;
 	white-space: nowrap;
 	padding: 10px 0;
 	background-color: #303f9f;
 }
 
 
-.game-tabs .game-tab {
-	height: 150px;
-	max-width: 300px;
+.game-tabs .game-tab-container {
+	width: 300px;
+	height: 400px;
 	margin: 0px 5px 10px 5px;
-	padding: 5px 10px;
+	padding: 0px 10px;
 	display: inline-block;
+}
+
+.game-tab-container .game-tab {
+	height: 180px;
+	width: 100%;
+	margin: 5px 0;
+	padding: 5px 10px;
 }
 
 .game-tabs #game-title {
@@ -70,6 +77,9 @@
 
 .game-tabs #game-thumbnail {
 	max-width: 250px;
+	height: 100%;
+	width: auto;
+	margin: 0 auto;
 	height: 80%;
 	display: block;
 }

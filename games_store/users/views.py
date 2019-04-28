@@ -64,13 +64,19 @@ def authenticate_user(request, username, password):
 
 
 def profile(request, pk):
-	user = User.objects.get(pk=pk)
+	user = (User.objects
+		.select_related("profile")
+		.prefetch_related("review_set", "game_set")
+		.get(pk=pk)
+		)
 	profile = user.profile
 
 	is_profile_owner = (user.pk == request.user.pk)
 
-	reviews = Review.objects.filter(user=user)
-	games = Game.objects.filter(owners=user)
+	reviews = user.review_set.select_related("game").all()
+	games = user.game_set.all()
+
+
 	update_form = None
 	if is_profile_owner:
 		print("Gotten request form")

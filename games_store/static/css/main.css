@@ -38,6 +38,12 @@ img {
 /*----------------------------
             NAVBAR 
 ------------------------------*/
+
+#site-icon {
+	height: 64px;
+	width: auto;
+}
+
 #navbar {
 	color: #ddd;
 }
@@ -52,6 +58,16 @@ img {
 	font-size: 2em;
 	margin: 0 7.5px;
 }
+
+@media only screen and (max-width: 600px) {
+	#navbar a {
+		display: block;
+		padding-top: 10px;
+	}
+}
+
+
+
 
 
 .content {

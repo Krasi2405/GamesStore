@@ -17,7 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import re_path
+from django.urls import re_path, path
 
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
@@ -25,3 +25,14 @@ urlpatterns = [
     re_path(r'^users/', include(('users.urls', 'users'), namespace = 'users')),
     re_path(r'^library/', include(('library.urls', 'library'), namespace = 'library'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+
+        # For django versions before 2.0:
+        # url(r'^__debug__/', include(debug_toolbar.urls)),
+
+    ] + urlpatterns

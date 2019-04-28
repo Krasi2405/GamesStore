@@ -13,9 +13,16 @@ def index(request):
 
 
 def detail(request, pk):
-	game = Game.objects.get(pk=pk)
+	game_query = (Game.objects
+		.prefetch_related("gameimage_set", "review_set", "tags", "platforms")
+	)
+	if request.user.is_authenticated:
+		game_query.prefetch_related("owenrs")
+
+	game = game_query.get(pk=pk)
+
 	images = game.gameimage_set.all()
-	reviews = game.review_set.all()
+	reviews = game.review_set.select_related("user__profile").all()
 	tags = game.tags.all()
 	platforms = game.platforms.all()
 
@@ -28,7 +35,7 @@ def detail(request, pk):
 		if game.owners.filter(id=request.user.pk):
 			is_owner = True
 
-		if reviews.filter(game=pk):
+		if reviews.filter(user=request.user.pk):
 			has_reviewed = True
 
 		if has_reviewed:

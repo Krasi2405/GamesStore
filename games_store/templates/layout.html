@@ -23,15 +23,17 @@
 <body class = "indigo darken-1">
 	<div id = "navbar" class = "section indigo darken-3">
 		<div class = "row">
-			<div class = "col s5 left-align">
+			<div class = "col m5 s4 left-align">
 				<a href = "{% url 'store:index' %}">Store</a>
 				<a href = "">Help</a>
 			</div>
-			<div class = "col s2 center-align circle">
-				<img src = "{% static 'images/gamepad.png' %}" style = "width: auto; max-height: 64px">
+			<div class = "col m2 s4 center-align circle" style = "max-height: 64px;">
+				<a href = "{% url 'store:index' %}">
+					<img src = "{% static 'images/gamepad.png' %}" id = "site-icon">
+				</a>
 			</div>
 
-			<div class = "col s5 right-align">
+			<div class = "col m5 s4 right-align">
 				{% if user.is_authenticated %}
 					<a href = "{% url 'library:index' %}">Library</a>
 					<a class = "dropdown-trigger" href = "#" data-target="profile-dropdown">Profile</a>

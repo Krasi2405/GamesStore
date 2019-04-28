@@ -1,48 +1,46 @@
 let stars_list = [];
 
+
+class Star {
+	constructor(filled_star, unfilled_star) {
+		this.filled_star = filled_star;
+		this.unfilled_star = unfilled_star;
+	}
+
+	fill() {
+		this.filled_star.css("display", "inline");
+		this.unfilled_star.css("display", "none");
+	}
+
+	unfill() {
+		this.filled_star.css("display", "none");
+		this.unfilled_star.css("display", "inline");
+	}
+}
+
+let stars = [];
+
 $(document).ready(function () {
 	let input = $("#rating");
 
-	let stars = $(".star_container");
+	let star_containers = $(".star_container");
 	for(let i = 0; i < 5; i++) {
-		let star = stars[i];
+		let star_container = star_containers[i];
 
-		let filled_star = $(star).find(".filled-star");
-		let unfilled_star = $(star).find(".unfilled-star");
+		let filled_star = $(star_container).find(".filled-star");
+		let unfilled_star = $(star_container).find(".unfilled-star");
 
-		$(filled_star).click(function() {
+		let star = new Star(filled_star, unfilled_star);
+		stars.push(star);
+		$(star_container).click(function() {
+			stars.forEach(function(element) {
+				element.unfill();
+			});
 
-			for(let j = 0; j < 5; j++) {
-				let star = stars[j];
-				$(input).attr("value", i + 1);
-				if(j <= i) {
-					$(star).find(".filled-star").css("display", "inline");
-					$(star).find(".unfilled-star").css("display", "none");
-				}
-				else
-				{
-					$(star).find(".filled-star").css("display", "none");
-					$(star).find(".unfilled-star").css("display", "inline");
-				}
+			$("#rating").attr("value", i + 1);
+			for(let j = 0; j <= i; j++) {
+				stars[j].fill();
 			}
 		});
-
-
-		$(unfilled_star).click(function() {
-			for(let j = 0; j < 5; j++) {
-				let star = stars[j];
-				$(input).attr("value", i + 1);
-				if(j > i) {
-					$(star).find(".filled-star").css("display", "none");
-					$(star).find(".unfilled-star").css("display", "inline");
-				}
-				else
-				{
-					$(star).find(".filled-star").css("display", "inline");
-					$(star).find(".unfilled-star").css("display", "none");
-				}
-			}
-		});
-
 	}
 });
