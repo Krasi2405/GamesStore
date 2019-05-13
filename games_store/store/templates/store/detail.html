@@ -39,7 +39,7 @@
 			<div class = "col s12 m1"></div>
 			<div class = "col s12 m5 indigo darken-3 z-depth-3">
 				<p id = "title">{{ game.name }}</p>
-				<p id = "review-num">Reviews: 10/10</p>
+				<p id = "review-num">Reviews: {{ rating }}/5</p>
 				<p id = "release-date">{{ game.release_date.date }}</p>
 				<p id = "developer-link">Developer: <a href = "#to_developer">Developer link here!</a></p>
 				{% if tags %}

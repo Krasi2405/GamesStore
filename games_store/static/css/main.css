@@ -136,6 +136,13 @@ footer .footer-copyright p {
 .btn:focus, .btn-small:focus {
 	background-color: #6200ea;
 }
+
+
+.pagination li a {
+	color: #f00;
+}
+
+
 /*================================
 		DROPDOWN MENU
 ==================================*/

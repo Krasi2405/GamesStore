@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Avg
+from django.core.paginator import Paginator
 
 from .models import Game, GameImage, Tag, Review
 
@@ -25,6 +27,8 @@ def detail(request, pk):
 	reviews = game.review_set.select_related("user__profile").all()
 	tags = game.tags.all()
 	platforms = game.platforms.all()
+
+	rating = reviews.aggregate(Avg("rating"))["rating__avg"]
 
 	is_owner = False
 	has_reviewed = False
@@ -60,22 +64,34 @@ def detail(request, pk):
 		"store/detail.html", 
 		{"game": game, "images": images, "reviews": reviews, "tags": tags, "platforms": platforms,
 		 "is_owner": is_owner, "has_reviewed": has_reviewed, "review_form": review_form, 
-		 "user_review": user_review}
+		 "user_review": user_review, "rating": rating}
 	)
 
 
 def search(request):
-	games = Game.objects.all()
+	GAMES_PER_PAGE_COUNT = 2
 
+	games_list = Game.objects.all()
+
+
+	page = 1
+	
 
 	if request.GET:
 		if request.GET.get("search-text"):
-			games = games.filter(name__contains=request.GET["search-text"])
+			games_list = games_list.filter(name__contains=request.GET["search-text"])
+
 		if request.GET.get("tags[]"):
 			for tag_id in request.GET.getlist("tags[]"):
-				games = games.filter(tags__pk=tag_id)
+				games_list = games_list.filter(tags__pk=tag_id)
+
+		if request.GET.get("page"):
+			page = request.GET["page"]
 
 
+	paginator = Paginator(games_list, GAMES_PER_PAGE_COUNT)
+
+	games = paginator.get_page(page)
 
 	tags = Tag.objects.all()
 
