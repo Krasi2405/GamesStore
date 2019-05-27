@@ -23,7 +23,8 @@ urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
     re_path(r'^store/', include(('store.urls', 'store'), namespace = 'store')),
     re_path(r'^users/', include(('users.urls', 'users'), namespace = 'users')),
-    re_path(r'^library/', include(('library.urls', 'library'), namespace = 'library'))
+    re_path(r'^library/', include(('library.urls', 'library'), namespace = 'library')),
+    re_path(r'^api/', include(('api.urls', 'api'), namespace = 'api')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
@@ -31,8 +32,4 @@ if settings.DEBUG:
     import debug_toolbar
     urlpatterns = [
         path('__debug__/', include(debug_toolbar.urls)),
-
-        # For django versions before 2.0:
-        # url(r'^__debug__/', include(debug_toolbar.urls)),
-
     ] + urlpatterns

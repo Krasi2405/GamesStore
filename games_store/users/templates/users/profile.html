@@ -33,9 +33,10 @@
 
 	<br>
 
-	
-	<p class = "center">Recently played games</p>
+	{% if games %}
+	<p class = "center">Recently bought games</p>
 	<div class = "game-tabs">
+		
 		{% for game in games %}
 			{% if not forloop.counter|divisibleby:2 %}
 			<div class = "game-tab-container">
@@ -55,17 +56,19 @@
 			</div>
 			{% endif %}
 		{% endfor %}
+
 		{% if not games|length|divisibleby:2 %}
 			</div>
 		{% endif %}
 
 	</div>
+	{% endif %}
 
 	<br>
 
-	
+	{% if reviews %}
+	<p class = "center">Recent reviews</p>
 	<div class = "items-tab">
-		<p class = "center">Recent reviews</p>
 		{% for review in reviews %}
 			<div class = "item-tab review indigo darken-1 z-depth-1">
 				<div class = "valign-wrapper">
@@ -81,6 +84,8 @@
 			</div>
 		{% endfor %}
     </div>
+    <br>
+    {% endif %}
     
 
 {% endblock %}
