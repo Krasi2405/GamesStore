@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     'store',
@@ -56,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'games_store.urls'
@@ -152,3 +154,5 @@ REST_FRAMEWORK = {
     #    'rest_framework.permissions.IsAuthenticated',
     #),
 }
+
+CORS_ORIGIN_ALLOW_ALL =  True
