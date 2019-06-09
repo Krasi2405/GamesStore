@@ -21,7 +21,7 @@ from django.urls import re_path, path
 
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
-    re_path(r'^store/', include(('store.urls', 'store'), namespace = 'store')),
+    re_path(r'^', include(('store.urls', 'store'), namespace = 'store')),
     re_path(r'^users/', include(('users.urls', 'users'), namespace = 'users')),
     re_path(r'^library/', include(('library.urls', 'library'), namespace = 'library')),
     re_path(r'^api/', include(('api.urls', 'api'), namespace = 'api')),
