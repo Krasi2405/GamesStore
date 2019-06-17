@@ -69,15 +69,12 @@ def detail(request, pk):
 
 
 def search(request):
-	GAMES_PER_PAGE_COUNT = 2
-
 	games_list = Game.objects.all()
-
-
+	games_per_page_count = 2
 	page = 1
-	
 
 	if request.GET:
+		print(request.GET)
 		if request.GET.get("search-text"):
 			games_list = games_list.filter(name__contains=request.GET["search-text"])
 
@@ -88,14 +85,18 @@ def search(request):
 		if request.GET.get("page"):
 			page = request.GET["page"]
 
+		if request.GET.get("count"):
+			games_per_page_count = request.GET.get("count")
 
-	paginator = Paginator(games_list, GAMES_PER_PAGE_COUNT)
 
+	paginator = Paginator(games_list, games_per_page_count)
 	games = paginator.get_page(page)
-
 	tags = Tag.objects.all()
 
-	return render(request, "store/search_bar.html", {"games": games, "tags": tags})
+	return render(request, "store/search_bar.html", 
+		{"games": games, 
+		 "tags": tags, 
+		 "games_per_page_count": games_per_page_count})
 
 
 @login_required
