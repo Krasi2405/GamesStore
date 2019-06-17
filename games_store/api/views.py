@@ -41,11 +41,8 @@ class PlatformViewSet(viewsets.ModelViewSet):
 @api_view(['GET'])
 def thumbnail_image(request, pk	):
 	game = get_object_or_404(Game, pk=pk)
-	headers = {
-		"type": "image"
-	}
 
-	return Response(image_to_b64(game.thumbnail), headers=headers)
+	return Response(image_to_b64(game.thumbnail), content_type="image/*")
 
 
 def image_to_b64(value):
