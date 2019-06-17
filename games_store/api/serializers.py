@@ -51,8 +51,6 @@ class GameSerializer(serializers.HyperlinkedModelSerializer):
 	tags = serializers.PrimaryKeyRelatedField(many=True, queryset=Tag.objects.all())
 	platforms = serializers.PrimaryKeyRelatedField(many=True, queryset=Platform.objects.all())
 
-	thumbnail = ImageSerializerField(allow_null=True)
-
 
 	class Meta:
 		model = Game
